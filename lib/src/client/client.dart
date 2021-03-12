@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:amazon_cognito_identity_dart_2/sig_v4.dart';
 import 'package:built_value/serializer.dart';
@@ -126,7 +125,7 @@ $payload''';
     Map<String, String>? queryParams,
   }) async {
     final SignedRequestParams params =
-    buildSignedGetParams(key: key, queryParams: queryParams);
+        buildSignedGetParams(key: key, queryParams: queryParams);
     return _client.head(params.uri, headers: params.headers);
   }
 
@@ -161,7 +160,7 @@ ListBucketResult? _parseListObjectResponse(String responseXml) {
   //parse json to src.model objects
   try {
     ListBucketResult? parsedObj =
-        ListBucketResultParker.fromJson(jsonString).result;
+        ListBucketResultParker.fromJson(jsonString)!.result;
 
     return parsedObj;
   } on DeserializationError {
@@ -172,6 +171,6 @@ ListBucketResult? _parseListObjectResponse(String responseXml) {
     fixedJson["ListBucketResult"]
         ["Contents"] = [fixedJson["ListBucketResult"]["Contents"]];
 
-    return ListBucketResultParker.fromJsonMap(fixedJson).result;
+    return ListBucketResultParker.fromJsonMap(fixedJson)!.result;
   }
 }

@@ -17,9 +17,9 @@ class _$ListBucketResultSerializer
   final String wireName = 'ListBucketResult';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, ListBucketResult object,
+  Iterable<Object?> serialize(Serializers serializers, ListBucketResult object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       'Name',
       serializers.serialize(object.name, specifiedType: const FullType(String)),
       'MaxKeys',
@@ -61,7 +61,7 @@ class _$ListBucketResultSerializer
 
   @override
   ListBucketResult deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new ListBucketResultBuilder();
 
@@ -69,7 +69,7 @@ class _$ListBucketResultSerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final Object value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'Name':
           result.name = serializers.deserialize(value,

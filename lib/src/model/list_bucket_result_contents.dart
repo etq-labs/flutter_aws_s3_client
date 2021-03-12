@@ -33,7 +33,7 @@ abstract class Contents implements Built<Contents, ContentsBuilder> {
     return json.encode(serializers.serializeWith(Contents.serializer, this));
   }
 
-  static Contents fromJson(String jsonString) {
+  static Contents? fromJson(String jsonString) {
     return serializers.deserializeWith(
         Contents.serializer, json.decode(jsonString));
   }

@@ -1,10 +1,5 @@
 [![Pub Package](https://img.shields.io/pub/v/flutter_aws_s3_client.svg)](https://pub.dartlang.org/packages/flutter_aws_s3_client)
 
-# DEPRECATED
-
-Since there is now an official package for accessing AWS services, I decided to not longer support this package. please migrate to https://github.com/aws-amplify/amplify-flutter / https://pub.dev/packages/amplify_storage_s3/example
-
-
 # flutter_aws_s3_client
 
 Supports downloading objects and listing objects in a bucket.
@@ -33,21 +28,17 @@ If you implement more methods, feel free to open a pull request.
 
 ### Get an object
 
-
-    final response = await s3client.getObject("your/object/key"); 
-
+    final response = await s3client.getObject("your/object/key");
 
 ### List objects of the bucket
-
 
     ListBucketResult listBucketResult =
       await s3client.listObjects(prefix: "dir1/dir2/", delimiter: "/");
     print(listBucketResult.toString());
 
 If you want to use a custom http client, use the method `buildSignedGetParams`.
-This method returns an object containing the URL and the Authorization headers, which can be 
+This method returns an object containing the URL and the Authorization headers, which can be
 used to build the request with your preferred http client.
-
 
 ### Download a large object to a file without keeping everything in-memory (streaming)
 
@@ -71,7 +62,7 @@ Future download(String key, File file, [String etag = null]) async {
   }
   final response = response = await request.close();
   if(response.statusCode != HttpStatus.ok){
-     //handle error  
+     //handle error
   }else{
      return response.pipe(file.openWrite());
   }
